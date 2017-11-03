@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update sys_domain="global" table="sys_script_client">
+    <sys_script_client action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <applies_extended>false</applies_extended>
+        <condition/>
+        <description/>
+        <field>short_description</field>
+        <global>true</global>
+        <messages/>
+        <name>Needit glide get value function </name>
+        <order/>
+        <script><![CDATA[function onChange(control, oldValue, newValue, isLoading, isTemplate)
+{
+	if (isLoading)
+		return;
+	
+	if (!g_form.isNewRecord())
+		return;
+	
+	
+	var lookup = new GlideRecord('short_desc_lookup');
+	lookup.addQuery('u_subcategory',g_form.getValue('subcategory'));
+	lookup.query();
+	var temp;
+	if (lookup.next())
+		{
+		temp = lookup.u_short_description;
+		if (null != temp)
+			{
+			g_form.setValue('short_description', temp);
+		}
+		else
+			{
+			g_form.setValue('short_description', "");
+		}}
+		else
+			{
+			g_form.setValue('short_description', "");
+		}
+		//Type appropriate comment here, and begin script below
+		
+		
+		function onLoad() {
+			if(g_form.isNewRecord()){
+				alert('New Record!');
+			}
+		}}]]></script>
+        <sys_class_name>sys_script_client</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2017-10-27 15:04:07</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>c81297b94f0a03008e7f38a18110c778</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Needit glide get value function </sys_name>
+        <sys_overrides/>
+        <sys_package display_value="NeedIt" source="x_58872_needit">6ead8e780f603200cd674f8ce1050ed1</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="NeedIt">6ead8e780f603200cd674f8ce1050ed1</sys_scope>
+        <sys_update_name>sys_script_client_c81297b94f0a03008e7f38a18110c778</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2017-10-27 15:04:07</sys_updated_on>
+        <table>x_58872_needit_needit</table>
+        <type>onChange</type>
+        <ui_type>0</ui_type>
+        <view/>
+    </sys_script_client>
+</record_update>
